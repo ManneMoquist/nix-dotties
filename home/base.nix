@@ -1,8 +1,5 @@
 { vars, lib, pkgs, config, ... }: {
 	programs  = {
-		git.enable = true;
-		# neovim.enable = true;
-
 		zsh = {
 			enable = true;
 			enableCompletion = true;
@@ -13,5 +10,10 @@
 			history.size = 10000;
 		};
 		direnv.enable = true;
+
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 	};
 }
