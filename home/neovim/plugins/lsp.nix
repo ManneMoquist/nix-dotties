@@ -29,6 +29,7 @@
         tailwindcss.enable = true;
         ts_ls.enable = true;
         terraformls.enable = true;
+        ruby_lsp.enable = true;
       };
     };
   };

@@ -1,5 +1,6 @@
 { inputs, config, pkgs, ...}:
 {
+  xdg.enable = true;
 	imports = [
 		./neovim
 		./base.nix

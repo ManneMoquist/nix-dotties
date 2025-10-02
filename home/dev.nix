@@ -32,8 +32,10 @@ in {
   home.packages = [
     pkgs.go
     pkgs.ruby
+    pkgs.ruby-lsp
     pkgs.nodejs
     pkgs.yarn
     pkgs.pnpm
+    pkgs.openssl
   ];
 }

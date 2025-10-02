@@ -10,10 +10,15 @@
 			history.size = 10000;
 		};
 		direnv.enable = true;
+    btop.enable = true;
 
     fzf = {
       enable = true;
       enableZshIntegration = true;
     };
 	};
+
+  home.packages = [
+    pkgs.bluetui
+  ];
 }

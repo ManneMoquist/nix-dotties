@@ -1,0 +1,132 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+  
+  border: none;
+  border-radius: 0;
+
+  --gb-bg: #282828;
+  --gb-red: #cc241d;
+  --gb-green: #98971a;
+  --gb-yellow: #d79921;
+  --gb-blue: #458555;
+  --gb-purple: #b16286;
+  --gb-aqua: #689d6a;
+  --gb-orange: #d65d0e;
+  --gb-gray: #a89984;
+  --gb-gray-2: #928374;
+  --gb-red-2: #fb4934;
+  --gb-green-2: #b8bb26;
+  --gb-yellow-2: #fabd2f;
+  --gb-blue-2: #83a598;
+  --gb-purple-2: #d3869b;
+  --gb-aqua-2: #8ec07c;
+  --gb-orange-2: #fe8019;
+  --gb-fg: #8ec07c;
+  
+  --gb-bg0: #282828;
+  --gb-bg1: #3c3836;
+  --gb-bg2: #504945;
+  --gb-bg3: #665c54;
+  --gb-bg4: #7c6f64;
+  
+  --gb-fg0: #fbf1c7;
+  --gb-fg1: #ebdbb2;
+  --gb-fg2: #d5c4a1;
+  --gb-fg3: #bdae93;
+  --gb-fg4: #a89984;
+}
+
+window#waybar {
+  background-color: var(--gb-bg1);
+  color: var(--gb-fg)
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: var(--gb-fg);
+}
+
+#workspaces button:hover {
+  background: var(--gb-bg4);
+}
+
+#workspaces button.focused, #workspaces button.active {
+  background: var(--gb-bg3);
+  box-shadow: none;
+}
+
+#workspaces button.urgent {
+  background-color: var(--gb-orange);
+  box-shadow: none;
+}
+
+#pulseaudio:hover {
+  background-color: var(--gb-aqua);
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery {
+    background-color: var(--gb-bg1);
+}
+
+#battery.charging, #battery.plugged {
+    background-color: var(--gb-gree-2);
+    color: var(--gb-bg);
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: var(--gb-red) ;
+}
+
+#network {
+    background-color: var(--gb-bg1);
+}
+
+#pulseaudio {
+    background-color: var(--gb-bg1);
+}
+
+#pulseaudio.muted {
+    background-color: var(--gb-gray-2);
+}
+
+#language {
+    background-color: #00b093;
+}
