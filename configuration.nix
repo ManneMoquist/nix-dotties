@@ -74,10 +74,13 @@
 
   services = {
     gnome.gnome-keyring.enable = true;
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-      options = "caps:escape";
+    xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "caps:escape";
+      };
+      videoDrivers = ["nvidia"];
     };
     displayManager.ly = {
       enable = true;
@@ -94,7 +97,16 @@
     };
   };
 
-  hardware.bluetooth.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      nvidiaSettings = true;
+      open = true;
+    };
+  };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

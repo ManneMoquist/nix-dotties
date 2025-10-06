@@ -28,31 +28,6 @@
           };
         };
       };
-      #style = ''
-        #        * {
-        #          border: none;
-        #          border-radius: 0;
-        #        }
-        #        window#waybar {
-        #          background: #3c3836;
-        #          color: #eddbd2;
-        #        }
-        #        #workspaces button {
-        #          padding: 0 5px;
-        #          background: #504945;
-        #        }
-        #        #workspaces button:hover {
-        #          background: #7c6f64;
-        #          box-shadow: none;
-        #        }
-        #        #workspaces button.focused {
-        #          background: #665c54;
-        #          box-shadow: none;
-        #        }
-        #        #workspaces button.urgent {
-        #          background: #fe8019;
-        #        }
-        #      '';
     };
     swaylock = {
       enable = true;
@@ -118,6 +93,8 @@
       pkgs.wdisplays
       pkgs.kanshi
       pkgs.pulseaudio
+      pkgs.google-chrome
+      pkgs.libnotify
     ];
 
 
@@ -129,5 +106,5 @@
     };
   };
 
- home.file."./config/waybar/style.css".source = ./waybar/style.css;
+  xdg.configFile."waybar/style.css".source = ./waybar/style.css;
 }

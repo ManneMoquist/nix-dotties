@@ -1,69 +1,65 @@
+@define-color gbbg #282828;
+@define-color gbred #cc241d;
+@define-color gbgreen #98971a;
+@define-color gbyellow #d79921;
+@define-color gbblue #458555;
+@define-color gbpurple #b16286;
+@define-color gbaqua #689d6a;
+@define-color gborange #d65d0e;
+@define-color gbgray #a89984;
+@define-color gbgray2 #928374;
+@define-color gbred2 #fb4934;
+@define-color gbgreen2 #b8bb26;
+@define-color gbyellow2 #fabd2f;
+@define-color gbblue2 #83a598;
+@define-color gbpurple2 #d3869b;
+@define-color gbaqua2 #8ec07c;
+@define-color gborange2 #fe8019;
+@define-color gbfg #8ec07c;
+
+@define-color gbbg0 #282828;
+@define-color gbbg1 #3c3836;
+@define-color gbbg2 #504945;
+@define-color gbbg3 #665c54;
+@define-color gbbg4 #7c6f64;
+
+@define-color gbfg0 #fbf1c7;
+@define-color gbfg1 #ebdbb2;
+@define-color gbfg2 #d5c4a1;
+@define-color gbfg3 #bdae93;
+@define-color gbfg4 #a89984;
+
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-  
   border: none;
   border-radius: 0;
-
-  --gb-bg: #282828;
-  --gb-red: #cc241d;
-  --gb-green: #98971a;
-  --gb-yellow: #d79921;
-  --gb-blue: #458555;
-  --gb-purple: #b16286;
-  --gb-aqua: #689d6a;
-  --gb-orange: #d65d0e;
-  --gb-gray: #a89984;
-  --gb-gray-2: #928374;
-  --gb-red-2: #fb4934;
-  --gb-green-2: #b8bb26;
-  --gb-yellow-2: #fabd2f;
-  --gb-blue-2: #83a598;
-  --gb-purple-2: #d3869b;
-  --gb-aqua-2: #8ec07c;
-  --gb-orange-2: #fe8019;
-  --gb-fg: #8ec07c;
-  
-  --gb-bg0: #282828;
-  --gb-bg1: #3c3836;
-  --gb-bg2: #504945;
-  --gb-bg3: #665c54;
-  --gb-bg4: #7c6f64;
-  
-  --gb-fg0: #fbf1c7;
-  --gb-fg1: #ebdbb2;
-  --gb-fg2: #d5c4a1;
-  --gb-fg3: #bdae93;
-  --gb-fg4: #a89984;
 }
 
 window#waybar {
-  background-color: var(--gb-bg1);
-  color: var(--gb-fg)
+  background: @gbbg1;
+  color: @gbfg;
 }
 
 #workspaces button {
   padding: 0 5px;
-  color: var(--gb-fg);
+  color: @gbfg;
 }
 
 #workspaces button:hover {
-  background: var(--gb-bg4);
+  background: @gbbg4;
 }
 
 #workspaces button.focused, #workspaces button.active {
-  background: var(--gb-bg3);
+  background: @gbbg3;
   box-shadow: none;
 }
 
 #workspaces button.urgent {
-  background-color: var(--gb-orange);
+  background: @gborange;
   box-shadow: none;
 }
 
 #pulseaudio:hover {
-  background-color: var(--gb-aqua);
+  background: @gbaqua;
 }
 
 #clock,
@@ -102,31 +98,35 @@ window#waybar {
 }
 
 #battery {
-    background-color: var(--gb-bg1);
+    background: @gbbg1;
+    color: @gbfg;
 }
 
 #battery.charging, #battery.plugged {
-    background-color: var(--gb-gree-2);
-    color: var(--gb-bg);
+    background: @gbgreen2;
+    color: @gbbg;
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: var(--gb-red) ;
+    background: @gbred;
 }
 
 #network {
-    background-color: var(--gb-bg1);
+    background: @gbbg1;
 }
 
 #pulseaudio {
-    background-color: var(--gb-bg1);
+    background: @gbbg1;
+}
+
+#pulseaudio:hover {
+  background: @gbbg2;
 }
 
 #pulseaudio.muted {
-    background-color: var(--gb-gray-2);
+    background: @gbred;
 }
 
 #language {
-    background-color: #00b093;
+    background: @gbbg1;
 }
