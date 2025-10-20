@@ -1,6 +1,16 @@
 { vars, lib, pkgs, config, ... }: {
 	programs = {
 	  firefox.enable = true;
+    qutebrowser = {
+      enable = true;
+      settings = {
+        editor.command  = [ "ghostty" "-e" "nvim" "-f" "{file}"];
+        tabs.position = "right";
+      };
+    };
+    rofi = {
+      enable = true;
+    };
     ghostty = {
       enable = true;
       settings = {
@@ -16,6 +26,7 @@
         mainBar = {
           position = "top";
           modules-left = ["sway/workspaces" "sway/mode"];
+          modules-center = ["sway/window"];
           modules-right = ["sway/language" "pulseaudio" "network" "battery" "clock"];
 
           network = {
@@ -39,8 +50,8 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    config = {
-      modifier = "Mod4";
+    config = with {modKey = "Mod4";}; {
+      modifier = modKey;
       terminal = "ghostty";
       bars = [
         {
@@ -52,6 +63,9 @@
           xkb_layout = "us,se";
           xkb_options = "grp:win_space_toggle,caps:escape";
         };
+        "type:pointer" = {
+          accel_profile = "flat";
+        };
       };
       keybindings = lib.mkOptionDefault{
         "XF86MonBrightnessDown" = "exec light -U 10";
@@ -62,28 +76,86 @@
         "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'";
         "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
 
-        "Mod4+P" = "exec swaylock";
-        "Mod4+X" = "move workspace to output right";
+        "${modKey}+P" = "exec swaylock";
+        "${modKey}+X" = "move workspace to output right";
+        "${modKey}+d" = "exec rofi -show drun";
+
+        "${modKey}+shift+s" = "exec IMG=~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png && grim -g \"$(slurp)\" $IMG && wl-copy < $IMG";
       };
 
       window = {
         titlebar = false;
+        hideEdgeBorders = "both";
+      };
+
+      floating = {
+        titlebar = false;
+      };
+
+      fonts = {
+        names = ["BlexMono Nerd Font Mono"];
+        size = 8.0;
+      };
+
+      colors = {
+        focused = {
+          background = "#282828";
+          border = "#d65d03";
+          childBorder = "#d65d03";
+          indicator = "#cc241d";
+          text = "#8ec07c";
+        };
+        unfocused = {
+          background = "#282828";
+          border = "#3c3836";
+          childBorder = "#3c3836";
+          indicator = "#cc241d";
+          text = "#8ec07c";
+        };
       };
     };
   };
 
-  services = {
+  services = let 
+    lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
+    notify = msg:"${pkgs.libnotify}/bin/notify-send \"${msg}\"";
+    in {
     swayidle = {
       enable = true;
+      
+      timeouts = [
+        {
+          timeout = 120;
+          command = notify "Locking the screen in 1 minute";
+        }
+        {
+          timeout = 180;
+          command = lock;
+        }
+      ];
 
       events = [
         {
           event = "before-sleep";
-          command = "swaylock";
+          command = lock;
+        }
+        {
+          event = "lock";
+          command = lock;
         }
       ];
     };
-    dunst.enable = true;
+    mako = {
+      enable = true;
+      settings = {
+        background-color = "#282828";
+        border-color = "#d65d03";
+
+        border-size = 1;
+        border-radius = 15;
+        default-timeout = 5000;
+      };
+    };
   };
 
 
@@ -95,6 +167,7 @@
       pkgs.pulseaudio
       pkgs.google-chrome
       pkgs.libnotify
+      pkgs.gimp
     ];
 
 

@@ -18,7 +18,12 @@
 
     networkmanager.enable = true;
     hosts = {
-      "127.0.0.1" = ["se.readly.test" "de.readly.test" "gb.readly.test"];
+      "127.0.0.1" = [
+        "se.readly.test"
+        "de.readly.test"
+        "gb.readly.test"
+        "go.readly.test"
+      ];
     };
   };
 
@@ -49,7 +54,7 @@
   users.users.manne = {
     isNormalUser = true;
     description = "manne";
-    extraGroups = [ "networkmanager" "wheel" "video"];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -109,6 +114,11 @@
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # needed for sway
@@ -121,6 +131,10 @@
       enable = true;
       wrapperFeatures.gtk = true;
     };
+  };
+
+  virtualisation = {
+    docker.enable = true;
   };
 }
 
