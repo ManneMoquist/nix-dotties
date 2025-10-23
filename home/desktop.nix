@@ -118,15 +118,15 @@
 
   services = let 
     lock = "${pkgs.swaylock}/bin/swaylock --daemonize";
-    notify = msg:"${pkgs.libnotify}/bin/notify-send \"${msg}\"";
+    notify = msg:"${pkgs.libnotify}/bin/notify-send --expire-time=4000 --category=\"lockwarning\" \"${msg}\"";
     in {
     swayidle = {
       enable = true;
       
       timeouts = [
         {
-          timeout = 120;
-          command = notify "Locking the screen in 1 minute";
+          timeout = 170;
+          command = notify "Locking the screen";
         }
         {
           timeout = 180;
@@ -153,7 +153,14 @@
 
         border-size = 1;
         border-radius = 15;
-        default-timeout = 5000;
+        font = "monospace 16";
+
+        "category=lockwarning" = {
+          font = "monospace 60";
+          anchor = "center";
+          width = 1080;
+          text-alignment="center";
+        };
       };
     };
   };

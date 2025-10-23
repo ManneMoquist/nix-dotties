@@ -31,6 +31,7 @@ in {
   };
   home.packages = [
     pkgs.go
+    pkgs.ripgrep
     pkgs.ruby
     pkgs.ruby-lsp
     pkgs.openssl

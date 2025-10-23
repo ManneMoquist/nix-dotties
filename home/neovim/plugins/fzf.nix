@@ -4,13 +4,15 @@
     plugins.fzf-lua = {
       enable = true; 
       keymaps = {
-        "<leader>ff" = "files";
+        "<leader>ff" = { action = "files";};
         "<leader>fg" = "live_grep";
         "<leader>fb" = "buffers";
         "<leader>fd" = "lsp_workspace_diagnostics";
         "<leader>fc" = "builtin";
         "<leader>fl" = "lsp_finder";
       }; 
+
+      profile = "default";
     };
   };
 }

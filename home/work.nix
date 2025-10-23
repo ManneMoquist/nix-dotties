@@ -15,6 +15,8 @@
 
       # for dev, probably will never use outside of work
       pkgs.overmind
+
+      pkgs.mongodb-compass
 		];
 		sessionVariables = {
 			NIXOS_OZONE_WL = "1";
