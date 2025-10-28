@@ -174,6 +174,7 @@
       pkgs.pulseaudio
       pkgs.google-chrome
       pkgs.libnotify
+      pkgs.audacity
       pkgs.gimp
     ];
 
